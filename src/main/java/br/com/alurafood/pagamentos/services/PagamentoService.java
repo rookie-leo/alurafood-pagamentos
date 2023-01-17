@@ -6,14 +6,23 @@ import br.com.alurafood.pagamentos.models.enums.Status;
 import br.com.alurafood.pagamentos.repositories.PagamentoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PagamentoService {
 
     private PagamentoRepository repository;
 
     private ModelMapper modelMapper;
+
+    @Autowired
+    public PagamentoService(PagamentoRepository repository, ModelMapper modelMapper) {
+        this.repository = repository;
+        this.modelMapper = modelMapper;
+    }
 
     public Page<PagamentoDto> obterTodos(Pageable paginacao) {
         return repository
