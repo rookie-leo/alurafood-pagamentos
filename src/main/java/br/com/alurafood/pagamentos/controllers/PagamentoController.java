@@ -59,5 +59,9 @@ public class PagamentoController {
         return String.format("Porta utilizada: %s", porta);
     }
 
+    @PatchMapping("/{id}/confirmar")
+    public void confirmarPagamento(@PathVariable Long id) {
+        service.confirmarPgmt(id);
+    }
 
 }
